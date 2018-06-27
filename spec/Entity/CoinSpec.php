@@ -9,14 +9,14 @@ class CoinSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
-    	$this->beConstructedWith(1);
+        $this->beConstructedWith(1);
         $this->shouldHaveType(Coin::class);
     }
 
     function it_should_return_its_value()
     {
-    	$myValue = 5;
-    	$this->beConstructedWith($myValue);
-		$this->getValue()->shouldReturn($myValue);
+        $myValue = 5;
+        $this->beConstructedWith($myValue);
+        $this->getValue()->shouldReturn($myValue);
     }
 }

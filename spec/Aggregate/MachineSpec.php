@@ -15,22 +15,22 @@ class MachineSpec extends ObjectBehavior
 
     function it_should_allow_you_to_insert_coins(Coin $coin)
     {
-		$this->insertCoin($coin);
+        $this->insertCoin($coin);
     }
 
     function it_should_reject_an_item_which_is_not_a_coin()
     {
-    	$this->shouldThrow('\TypeError')->duringInsertCoin('aaaaa');
+        $this->shouldThrow('\TypeError')->duringInsertCoin('aaaaa');
     }
 
     function it_should_return_total_value_of_inserted_coins()
     {
-    	$sum = 0;
-    	for ($i=1; $i<3; $i++) {
-    		$this->insertCoin(new Coin($i));
-    		$sum += $i;
-	    }
+        $sum = 0;
+        for ($i = 1; $i < 3; $i++) {
+            $this->insertCoin(new Coin($i));
+            $sum += $i;
+        }
 
-    	$this->getCredits()->shouldReturn($sum);
+        $this->getCredits()->shouldReturn($sum);
     }
 }

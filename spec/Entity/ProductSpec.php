@@ -8,10 +8,10 @@ use Prophecy\Argument;
 
 class ProductSpec extends ObjectBehavior
 {
-	function let()
-	{
-		$this->beConstructedWith("Mocny Full", 2.5);
-	}
+    function let()
+    {
+        $this->beConstructedWith("Mocny Full", 2.5);
+    }
 
     function it_is_initializable()
     {
@@ -20,7 +20,7 @@ class ProductSpec extends ObjectBehavior
 
     function it_should_have_basic_product_attributes()
     {
-		$this->getName()->shouldReturn("Mocny Full");
-		$this->getPrice()->shouldReturn(2.5);
+        $this->getName()->shouldReturn("Mocny Full");
+        $this->getPrice()->shouldReturn(2.5);
     }
 }
