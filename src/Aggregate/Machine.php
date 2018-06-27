@@ -7,9 +7,24 @@ use Zeulus\VendingMachine\Entity\Coin;
 class Machine
 {
     /**
+     * Machine operates normally, buying is possible
+     */
+    const MODE_NORMAL = 1;
+
+    /**
+     * Machine is in service mode - we can add and remove products without paying
+     */
+    const MODE_SERVICE = 2;
+
+    /**
      * @var array Coin[]
      */
     private $insertedCoins = [];
+
+    /**
+     * @var int
+     */
+    private $mode;
 
     /**
      * @param Coin $coin
@@ -31,5 +46,24 @@ class Machine
             },
             0
         );
+    }
+
+    /**
+     * @param int $mode
+     */
+    public function changeMode($mode)
+    {
+        if (!in_array($mode, [self::MODE_NORMAL, self::MODE_SERVICE])) {
+            throw new \InvalidArgumentException("Machine cannot operate in such mode.");
+        }
+        $this->mode = $mode;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMode()
+    {
+        return $this->mode;
     }
 }

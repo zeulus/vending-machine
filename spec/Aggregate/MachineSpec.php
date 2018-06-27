@@ -33,4 +33,13 @@ class MachineSpec extends ObjectBehavior
 
         $this->getCredits()->shouldReturn($sum);
     }
+
+    function it_should_allow_to_change_operational_mode_between_service_and_normal()
+    {
+        $this->changeMode(Machine::MODE_NORMAL);
+        $this->getMode()->shouldReturn(Machine::MODE_NORMAL);
+        $this->changeMode(Machine::MODE_SERVICE);
+        $this->getMode()->shouldReturn(Machine::MODE_SERVICE);
+        $this->shouldThrow('\InvalidArgumentException')->duringChangeMode(33);
+    }
 }
