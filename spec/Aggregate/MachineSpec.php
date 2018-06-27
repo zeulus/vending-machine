@@ -4,6 +4,7 @@ namespace spec\Zeulus\VendingMachine\Aggregate;
 
 use Zeulus\VendingMachine\Aggregate\Machine;
 use PhpSpec\ObjectBehavior;
+use Zeulus\VendingMachine\Aggregate\ProductsCollection;
 use Zeulus\VendingMachine\Entity\Coin;
 
 class MachineSpec extends ObjectBehavior
@@ -56,9 +57,16 @@ class MachineSpec extends ObjectBehavior
         $this->getCredits()->shouldReturn(0);
     }
 
-    function it_should_be_possible_to_add_merchandise_to_the_machine(ProductsCollection $products)
+    function it_should_be_possible_to_add_merchandise_to_the_machine(ProductsCollection $productsCollection)
     {
-        $this->setAvailableProducts($products);
-        $this->getAvailableProducts()->shouldReturn($products);
+        $this->changeMode(Machine::MODE_SERVICE);
+        $this->setAvailableProducts($productsCollection);
+        $this->getAvailableProducts()->shouldReturn($productsCollection);
+    }
+
+    function it_shoould_allow_adding_products_only_in_service_mode(ProductsCollection $productsCollection)
+    {
+        $this->changeMode(Machine::MODE_NORMAL);
+        $this->shouldThrow(\DomainException::class)->duringSetAvailableProducts($productsCollection);
     }
 }

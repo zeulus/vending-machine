@@ -27,6 +27,11 @@ class Machine
     private $mode;
 
     /**
+     * @var ProductsCollection
+     */
+    private $availableProducts;
+
+    /**
      * @param Coin $coin
      */
     public function insertCoin(Coin $coin)
@@ -53,7 +58,7 @@ class Machine
      */
     public function changeMode($mode)
     {
-        if (!in_array($mode, [self::MODE_NORMAL, self::MODE_SERVICE])) {
+        if ( ! in_array($mode, [self::MODE_NORMAL, self::MODE_SERVICE])) {
             throw new \InvalidArgumentException("Machine cannot operate in such mode.");
         }
         $this->mode = $mode;
@@ -74,6 +79,26 @@ class Machine
     {
         $allCoins = $this->insertedCoins;
         $this->insertedCoins = [];
+
         return $allCoins;
+    }
+
+    /**
+     * @param ProductsCollection $collection
+     */
+    public function setAvailableProducts(ProductsCollection $collection)
+    {
+        if ($this->getMode() !== self::MODE_SERVICE) {
+            throw new \DomainException("Adding products is only possible in Service Mode");
+        }
+        $this->availableProducts = $collection;
+    }
+
+    /**
+     * @return ProductsCollection
+     */
+    public function getAvailableProducts()
+    {
+        return $this->availableProducts;
     }
 }
