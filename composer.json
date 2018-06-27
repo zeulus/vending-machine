@@ -18,6 +18,6 @@
         }
     ],
     "scripts": {
-        "test": "phpspec run tests/spec"
+        "test": "phpspec run spec"
     }
 }
