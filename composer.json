@@ -5,11 +5,19 @@
     "require": {
         "phpspec/phpspec": "^4.3"
     },
+    "autoload": {
+        "psr-4": {
+            "Zeulus\\VendingMachine\\": "src/"
+        }
+    },
     "license": "GPLv2",
     "authors": [
         {
             "name": "Marcin Wójcik",
             "email": "zeulus@gmail.com"
         }
-    ]
+    ],
+    "scripts": {
+        "test": "phpspec run tests/spec"
+    }
 }
