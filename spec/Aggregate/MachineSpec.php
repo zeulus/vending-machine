@@ -42,4 +42,17 @@ class MachineSpec extends ObjectBehavior
         $this->getMode()->shouldReturn(Machine::MODE_SERVICE);
         $this->shouldThrow('\InvalidArgumentException')->duringChangeMode(33);
     }
+
+    function it_should_be_possible_to_return_all_coins_that_were_inserted()
+    {
+        $coins = [];
+        for ($i = 1; $i < 3; $i++) {
+            $coin = new Coin($i);
+            $this->insertCoin($coin);
+            $coins[] = $coin;
+        }
+
+        $this->returnCoins()->shouldReturn($coins);
+        $this->getCredits()->shouldReturn(0);
+    }
 }
