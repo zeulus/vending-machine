@@ -13,8 +13,10 @@ class CoinSpec extends ObjectBehavior
         $this->shouldHaveType(Coin::class);
     }
 
-    function it_should_have_a_value()
+    function it_should_return_its_value()
     {
-		$this->getValue()->shouldReturn(1);
+    	$myValue = 5;
+    	$this->beConstructedWith($myValue);
+		$this->getValue()->shouldReturn($myValue);
     }
 }
