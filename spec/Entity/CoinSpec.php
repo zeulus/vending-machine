@@ -10,6 +10,7 @@ class CoinSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
+    	$this->beConstructedWith(1);
         $this->shouldHaveType(Coin::class);
     }
 

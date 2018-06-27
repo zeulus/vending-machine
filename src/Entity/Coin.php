@@ -4,13 +4,26 @@ namespace Zeulus\VendingMachine\Entity;
 
 class Coin
 {
-    public function __construct($argument1)
+	/**
+	 * @var int
+	 */
+	private $value;
+
+	/**
+	 * Coin constructor.
+	 *
+	 * @param int $value
+	 */
+    public function __construct($value)
     {
-        // TODO: write logic here
+        $this->value = $value;
     }
 
+	/**
+	 * @return int
+	 */
     public function getValue()
     {
-        return 1;
+        return $this->value;
     }
 }
