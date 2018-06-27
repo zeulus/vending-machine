@@ -55,4 +55,10 @@ class MachineSpec extends ObjectBehavior
         $this->returnCoins()->shouldReturn($coins);
         $this->getCredits()->shouldReturn(0);
     }
+
+    function it_should_be_possible_to_add_merchandise_to_the_machine(ProductsCollection $products)
+    {
+        $this->setAvailableProducts($products);
+        $this->getAvailableProducts()->shouldReturn($products);
+    }
 }
