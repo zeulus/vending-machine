@@ -46,7 +46,7 @@ class MachineSpec extends ObjectBehavior
     function it_should_be_possible_to_return_all_coins_that_were_inserted()
     {
         $coins = [];
-        for ($i = 1; $i < 3; $i++) {
+        for ($i = 1; $i <= 3; $i++) {
             $coin = new Coin($i);
             $this->insertCoin($coin);
             $coins[] = $coin;

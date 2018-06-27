@@ -66,4 +66,14 @@ class Machine
     {
         return $this->mode;
     }
+
+    /**
+     * @return array Coin[]
+     */
+    public function returnCoins()
+    {
+        $allCoins = $this->insertedCoins;
+        $this->insertedCoins = [];
+        return $allCoins;
+    }
 }
