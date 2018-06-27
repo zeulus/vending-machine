@@ -1,0 +1,15 @@
+{
+    "name": "zeulus/vending-machine",
+    "description": "Coding Dojo Kata - Vending Machine",
+    "type": "project",
+    "require": {
+        "phpspec/phpspec": "^4.3"
+    },
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "Marcin Wójcik",
+            "email": "zeulus@gmail.com"
+        }
+    ]
+}
