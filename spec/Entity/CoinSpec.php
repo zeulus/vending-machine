@@ -4,7 +4,6 @@ namespace spec\Zeulus\VendingMachine\Entity;
 
 use Zeulus\VendingMachine\Entity\Coin;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class CoinSpec extends ObjectBehavior
 {
