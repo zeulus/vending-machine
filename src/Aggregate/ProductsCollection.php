@@ -35,4 +35,19 @@ class ProductsCollection implements \IteratorAggregate
     {
         return $this->products;
     }
+
+    /**
+     * @param $productName
+     *
+     * @return int
+     */
+    public function hasProduct($productName)
+    {
+        $foundProducts = array_filter($this->products,
+            function (Product $product) use ($productName) {
+                return ($product->getName() === $productName);
+            });
+
+        return (bool)count($foundProducts);
+    }
 }

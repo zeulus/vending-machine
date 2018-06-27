@@ -6,12 +6,18 @@ use Zeulus\VendingMachine\Aggregate\Machine;
 use PhpSpec\ObjectBehavior;
 use Zeulus\VendingMachine\Aggregate\ProductsCollection;
 use Zeulus\VendingMachine\Entity\Coin;
+use Zeulus\VendingMachine\Entity\Product;
 
 class MachineSpec extends ObjectBehavior
 {
     function it_is_initializable()
     {
         $this->shouldHaveType(Machine::class);
+    }
+
+    function it_should_be_in_normal_mode_when_initialized()
+    {
+        $this->getMode()->shouldReturn(Machine::MODE_NORMAL);
     }
 
     function it_should_allow_you_to_insert_coins(Coin $coin)
@@ -57,16 +63,15 @@ class MachineSpec extends ObjectBehavior
         $this->getCredits()->shouldReturn(0);
     }
 
-    function it_should_be_possible_to_add_merchandise_to_the_machine(ProductsCollection $productsCollection)
-    {
+    function it_should_be_possible_to_add_merchandise_to_the_machine(ProductsCollection $productsCollection) {
         $this->changeMode(Machine::MODE_SERVICE);
         $this->setAvailableProducts($productsCollection);
         $this->getAvailableProducts()->shouldReturn($productsCollection);
     }
 
-    function it_shoould_allow_adding_products_only_in_service_mode(ProductsCollection $productsCollection)
-    {
+    function it_shoould_allow_adding_products_only_in_service_mode(ProductsCollection $productsCollection) {
         $this->changeMode(Machine::MODE_NORMAL);
-        $this->shouldThrow(\DomainException::class)->duringSetAvailableProducts($productsCollection);
+        $this->shouldThrow(\DomainException::class)
+             ->duringSetAvailableProducts($productsCollection);
     }
 }

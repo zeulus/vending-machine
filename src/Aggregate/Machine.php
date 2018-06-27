@@ -32,6 +32,14 @@ class Machine
     private $availableProducts;
 
     /**
+     * Machine constructor.
+     */
+    public function __construct()
+    {
+        $this->mode = self::MODE_NORMAL;
+    }
+
+    /**
      * @param Coin $coin
      */
     public function insertCoin(Coin $coin)
@@ -77,7 +85,7 @@ class Machine
      */
     public function returnCoins()
     {
-        $allCoins = $this->insertedCoins;
+        $allCoins            = $this->insertedCoins;
         $this->insertedCoins = [];
 
         return $allCoins;
@@ -100,5 +108,13 @@ class Machine
     public function getAvailableProducts()
     {
         return $this->availableProducts;
+    }
+
+    /**
+     * @param string $productName
+     */
+    public function selectAndBuyProduct($productName)
+    {
+
     }
 }
