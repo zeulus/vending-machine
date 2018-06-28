@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Zeulus\VendingMachine\Aggregate;
 
@@ -32,17 +33,17 @@ class Machine
     private $availableProducts;
 
     /**
-     * Machine constructor.
+     * Machine constructor. On initialize, set operating mode to normal.
      */
     public function __construct()
     {
-        $this->mode = self::MODE_NORMAL;
+        $this->changeMode(self::MODE_NORMAL);
     }
 
     /**
      * @param Coin $coin
      */
-    public function insertCoin(Coin $coin)
+    public function insertCoin(Coin $coin): void
     {
         $this->insertedCoins[] = $coin;
     }
@@ -50,7 +51,7 @@ class Machine
     /**
      * @return int
      */
-    public function getCredits()
+    public function getCredits(): int
     {
         return array_reduce(
             $this->insertedCoins,
@@ -64,7 +65,7 @@ class Machine
     /**
      * @param int $mode
      */
-    public function changeMode($mode)
+    public function changeMode($mode): void
     {
         if ( ! in_array($mode, [self::MODE_NORMAL, self::MODE_SERVICE])) {
             throw new \InvalidArgumentException("Machine cannot operate in such mode.");
@@ -75,7 +76,7 @@ class Machine
     /**
      * @return int
      */
-    public function getMode()
+    public function getMode(): int
     {
         return $this->mode;
     }
@@ -83,7 +84,7 @@ class Machine
     /**
      * @return array Coin[]
      */
-    public function returnCoins()
+    public function returnCoins(): array
     {
         $allCoins            = $this->insertedCoins;
         $this->insertedCoins = [];
@@ -94,7 +95,7 @@ class Machine
     /**
      * @param ProductsCollection $collection
      */
-    public function setAvailableProducts(ProductsCollection $collection)
+    public function setAvailableProducts(ProductsCollection $collection): void
     {
         if ($this->getMode() !== self::MODE_SERVICE) {
             throw new \DomainException("Adding products is only possible in Service Mode");
@@ -105,16 +106,8 @@ class Machine
     /**
      * @return ProductsCollection
      */
-    public function getAvailableProducts()
+    public function getAvailableProducts(): ProductsCollection
     {
         return $this->availableProducts;
-    }
-
-    /**
-     * @param string $productName
-     */
-    public function selectAndBuyProduct($productName)
-    {
-
     }
 }
