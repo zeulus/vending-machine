@@ -15,7 +15,7 @@ class ProductsCollection implements \IteratorAggregate
     /**
      * @param Product $product
      */
-    public function addProduct(Product $product)
+    public function addProduct(Product $product): void
     {
         $this->products[] = $product;
     }
@@ -23,7 +23,7 @@ class ProductsCollection implements \IteratorAggregate
     /**
      * @return \ArrayIterator|Traversable
      */
-    public function getIterator()
+    public function getIterator(): \ArrayIterator
     {
         return new \ArrayIterator($this->products);
     }
@@ -31,17 +31,17 @@ class ProductsCollection implements \IteratorAggregate
     /**
      * @return array Product[]
      */
-    public function getProducts()
+    public function getProducts(): array
     {
         return $this->products;
     }
 
     /**
-     * @param $productName
+     * @param string $productName
      *
-     * @return int
+     * @return bool
      */
-    public function hasProduct($productName)
+    public function hasProduct(string $productName): bool
     {
         $foundProducts = array_filter($this->products,
             function (Product $product) use ($productName) {

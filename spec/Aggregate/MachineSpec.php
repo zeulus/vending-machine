@@ -6,7 +6,6 @@ use Zeulus\VendingMachine\Aggregate\Machine;
 use PhpSpec\ObjectBehavior;
 use Zeulus\VendingMachine\Aggregate\ProductsCollection;
 use Zeulus\VendingMachine\Entity\Coin;
-use Zeulus\VendingMachine\Entity\Product;
 
 class MachineSpec extends ObjectBehavior
 {

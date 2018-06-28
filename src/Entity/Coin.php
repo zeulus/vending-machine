@@ -14,7 +14,7 @@ class Coin
      *
      * @param int $value
      */
-    public function __construct($value)
+    public function __construct(int $value)
     {
         $this->value = $value;
     }
@@ -22,7 +22,7 @@ class Coin
     /**
      * @return int
      */
-    public function getValue()
+    public function getValue(): int
     {
         return $this->value;
     }

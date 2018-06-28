@@ -4,7 +4,6 @@ namespace spec\Zeulus\VendingMachine\Entity;
 
 use Zeulus\VendingMachine\Entity\Product;
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class ProductSpec extends ObjectBehavior
 {
